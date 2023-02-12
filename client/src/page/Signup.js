@@ -66,9 +66,11 @@ export default function Signup() {
                         </div >
                         <div>
                             <Field name="role">
-                                {({ input, meta }) => (<FormControl sx={{ m: 1}} fullWidth>
+                                {({ input, meta }) => (
+                                    <FormControl sx={{ m: 1, minWidth: 195}}>
                                     <InputLabel id="demo-simple-select-label">Role</InputLabel>
                                     <Select
+                                        autoWidth
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Role"

@@ -11,10 +11,10 @@ const validateCreateOrUpdateBody = (req, res, next) => {
             errors[item] = `${item} is required.`;
         }
     });
-    if((!Number.isInteger(cost) || cost <= 0) && !errors.cost) {
+    if((!Number.isInteger(+cost) || +cost <= 0) && !errors.cost) {
         errors.cost = 'cost has to be a positive integer'
     }
-    if((!Number.isInteger(amountAvailable) || amountAvailable < 0) && !errors.amountAvailable) {
+    if((!Number.isInteger(+amountAvailable) || +amountAvailable < 0) && !errors.amountAvailable) {
         errors.amountAvailable = 'amountAvailable has to be a positive integer or 0'
     }
     if(Object.keys(errors).length) {
@@ -32,7 +32,7 @@ const validateBuyBody = (req, res, next) => {
             errors[item] = `${item} is required.`;
         }
     });
-    if((!Number.isInteger(amount) || amount <= 0) && !errors.amount) {
+    if((!Number.isInteger(+amount) || +amount <= 0) && !errors.amount) {
         errors.cost = 'amount has to be a positive integer'
     }
     if(Object.keys(errors).length) {

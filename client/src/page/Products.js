@@ -137,7 +137,7 @@ export default function Products() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {products.map(product => <TableRow id={product.id}>
+                                        {products.map(product => <TableRow key={product.id}>
                                             <TableCell>{product.productName}</TableCell>
                                             <TableCell>{((product.cost || 0) / 100).toLocaleString("en-US", {style:"currency", currency:"USD"})}</TableCell>
                                             <TableCell>{product.amountAvailable}</TableCell>

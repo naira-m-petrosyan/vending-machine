@@ -11,7 +11,6 @@ class UserService {
     }
 
     update(id, updateObject) {
-        console.log(models);
         return models.User.update(updateObject, {where: {id}});
     }
 

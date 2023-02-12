@@ -1,5 +1,6 @@
 const httpStatus = require("http-status");
 const userService = require("../services/user.service");
+const sessionService = require("../services/session.service");
 
 class UserController {
     async createUser(req, res, next) {
@@ -14,7 +15,8 @@ class UserController {
     async getUser(req, res, next) {
         try {
             const user = await userService.getOne({id: req.user.id});
-            return res.status(httpStatus.OK).json({user});
+            const activeSessions = await sessionService.countAllUserSessions(user.id);
+            return res.status(httpStatus.OK).json({user, activeSessions});
         } catch (e) {
             return next(e);
         }

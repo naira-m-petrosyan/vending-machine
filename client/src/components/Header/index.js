@@ -3,11 +3,12 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, AppBar, Box, Toolbar} from "@mui/material";
 import {removeUser} from "../../store/user/user.slice";
+import {logout, logoutAll} from "../../store/auth/auth.slice";
 
 export default function Header(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {user} = useSelector(state => state.user);
+    const {user, activeSessions} = useSelector(state => state.user);
     return (
         <>
             <div className="header"></div>
@@ -20,9 +21,13 @@ export default function Header(props) {
                                     navigate(user.role === 'seller' ? '/products' : '/vending-machine');
                                 }}>Dashboard</Button>
                                 <Button color="inherit" onClick={() => {
-                                    dispatch(removeUser());
-                                    navigate('/login');
+                                    dispatch(logout());
                                 }}>Logout</Button>
+                                {activeSessions > 1 && <Box sx={{ display: 'block' }}>
+                                    <Button color="inherit" onClick={() => {
+                                    dispatch(logoutAll());
+                                }}>Logout From All devices</Button>
+                                </Box>}
                             </Then>
                             <Else>
                                 <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>

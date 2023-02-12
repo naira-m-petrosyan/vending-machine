@@ -51,6 +51,7 @@ export const userSlice = createSlice({
         updateLoading: false,
         updateSuccess: false,
         change: null,
+        activeSessions: 0,
     },
     reducers: userActions,
     extraReducers: {
@@ -58,12 +59,14 @@ export const userSlice = createSlice({
             return {
                 ...state,
                 user: action.payload.user,
+                activeSessions: action.payload.activeSessions,
             };
         },
         [getLoggedUser.fulfilled]: (state, action) => {
             return {
                 ...state,
                 user: action.payload.user,
+                activeSessions: action.payload.activeSessions,
             };
         },
         [resetDeposit.pending]: (state, action) => {

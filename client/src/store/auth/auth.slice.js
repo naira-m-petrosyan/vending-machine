@@ -30,6 +30,32 @@ export const login = createAsyncThunk(
     }
 );
 
+export const logout = createAsyncThunk(
+    "session/logout",
+    async (data, {dispatch}) => {
+        try {
+            const res = await AuthService.logout(data);
+            return res.data;
+        } catch (err) {
+            dispatch(setErrorMessage(err.response.data));
+            throw err;
+        }
+    }
+);
+
+export const logoutAll = createAsyncThunk(
+    "session/logoutAll",
+    async (data, {dispatch}) => {
+        try {
+            const res = await AuthService.logoutAll(data);
+            return res.data;
+        } catch (err) {
+            dispatch(setErrorMessage(err.response.data));
+            throw err;
+        }
+    }
+);
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {

@@ -117,7 +117,7 @@ export default function BuyerDashboard() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {products.map(product => <TableRow id={product.id}>
+                                    {products.map(product => <TableRow key={product.id}>
                                         <TableCell>{product.productName}</TableCell>
                                         <TableCell>{((product.cost || 0) / 100).toLocaleString("en-US", {style:"currency", currency:"USD"})}</TableCell>
                                         <TableCell>{product.amountAvailable}</TableCell>
@@ -193,7 +193,7 @@ export default function BuyerDashboard() {
                         <DialogContentText>
                             You can deposit only 5, 10, 20, 50 and 100 cent coins.
                             <Grid container >
-                                {Object.keys(coins).map(coin => <Grid item xs>
+                                {Object.keys(coins).map(coin => <Grid key={coin} item xs>
                                     <div>
                                         <Avatar alt={`${coin} cents`} src={images[coin]} />
                                         <ButtonGroup size="small" aria-label="small outlined button group">
